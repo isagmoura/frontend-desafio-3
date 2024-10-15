@@ -1,0 +1,39 @@
+header {
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  justify-content: space-between;
+  gap: 158px;
+  align-items: center;
+  padding-top: 29px;
+  padding-left: 54px;
+  padding-right: 100px;
+  padding-bottom: 25px;
+  margin: 0;
+  max-height: 41px;
+}
+
+.logo {
+  padding-right: 108px;
+}
+
+.menu-header {
+  display: flex;
+  gap: 75px;
+}
+
+.menu-header li {
+  list-style: none;
+}
+
+.menu-header li a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+}
+
+.icons-header-list {
+  display: flex;
+  list-style: none;
+  gap: 45px;
+  padding-left: 0;
+  align-items: center;
+}
