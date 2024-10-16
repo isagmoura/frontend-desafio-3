@@ -1,0 +1,46 @@
+.cards {
+  background: rgba(250, 243, 234, 1);
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-left: 53px;
+  padding-right: 53px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 55px;
+}
+
+.img-benefits {
+  width: 60px;
+  height: 60px;
+  padding: 0px 3.61px 0px 3.61px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.descriptions {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  gap: 2px;
+}
+
+.cards-benefits {
+  display: flex;
+}
+
+.descriptive-title {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 37.5px;
+  text-align: left;
+}
+
+.description-benefits {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  text-align: left;
+  color: rgba(137, 137, 137, 1);
+}

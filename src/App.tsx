@@ -1,5 +1,6 @@
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Benefits from "./components/Benefits/Benefits";
 import "./App.css";
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
         {/* hero */}
         {/* categories */}
         {/* products */}
-        {/* imgs */}
+        <Benefits />
       </main>
       <Footer />
     </>
