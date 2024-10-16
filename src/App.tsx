@@ -3,6 +3,7 @@ import Footer from "./components/Footer/Footer";
 import Benefits from "./components/Benefits/Benefits";
 import "./App.css";
 import Hero from "./components/Hero/Hero";
+import Categories from "./components/Categories/Categories";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Header />
       <main>
         <Hero />
-        {/* categories */}
+        <Categories />
         {/* products */}
         <Benefits />
       </main>
