@@ -1,3 +1,35 @@
+.title-categories-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 106px;
+  padding-bottom: 91px;
+}
+
+.title-categories {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+  color: rgba(51, 51, 51, 1);
+}
+
 .cards-categories {
   display: flex;
+  justify-content: center;
+  padding-left: 131px;
+  padding-right: 126px;
+  gap: 20px;
+}
+
+.categories a {
+  text-decoration: none;
+  color: rgba(51, 51, 51, 1);
+}
+
+.title-link {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 56px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
 }
