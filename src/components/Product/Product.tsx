@@ -1,24 +1,29 @@
-import product from "../../assets/product.png";
 import share from "../../assets/share.png";
 import compare from "../../assets/compare.png";
 import heart from "../../assets/heart.png";
 import classes from "./Product.module.css";
 
-function Product() {
+function Product(props: {
+  imageLink: string;
+  title: string;
+  description: string;
+  discount: string;
+  price: string;
+}) {
   return (
     <>
       <div className={classes["cards-products"]}>
         <div className={classes["products"]}>
           <a href="#">
-            <img src={product} />
+            <img src={props.imageLink} />
             <div className={classes["information-products"]}>
-              <p className={classes["title-product"]}>Syltherine</p>
+              <p className={classes["title-product"]}> {props.title}</p>
               <p className={classes["description-product"]}>
-                Stylish cafe chair
+                {props.description}
               </p>
               <div className={classes["prices-container"]}>
-                <p className={classes["discount-price"]}>Rp 2.500.000</p>
-                <p className={classes["old-price"]}>Rp 3.500.000</p>
+                <p className={classes["discount-price"]}> {props.discount} </p>
+                <p className={classes["old-price"]}>{props.price} </p>
               </div>
             </div>
             <div className={classes["product-hover"]}></div>
