@@ -4,11 +4,10 @@ header {
   justify-content: space-between;
   gap: 158px;
   align-items: center;
-  padding-top: 29px;
+  margin-top: 29px;
   padding-left: 54px;
   padding-right: 100px;
-  padding-bottom: 25px;
-  margin: 0;
+  margin-bottom: 25px;
   max-height: 41px;
 }
 
