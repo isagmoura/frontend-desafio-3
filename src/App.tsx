@@ -4,6 +4,7 @@ import Benefits from "./components/Benefits/Benefits";
 import "./App.css";
 import Hero from "./components/Hero/Hero";
 import Categories from "./components/Categories/Categories";
+import Products from "./components/Products/Products";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <main>
         <Hero />
         <Categories />
-        {/* products */}
+        <Products />
         <Benefits />
       </main>
       <Footer />
