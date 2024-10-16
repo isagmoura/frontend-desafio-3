@@ -58,7 +58,9 @@ function Footer() {
       </div>
       <hr className={classes["divider"]} />
       <div className={classes["credits"]}>
-        <p>2023 furino. All rights reverved</p>
+        <p className={classes["credits-sentence"]}>
+          2023 furino. All rights reverved
+        </p>
       </div>
     </>
   );

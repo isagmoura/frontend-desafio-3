@@ -17,11 +17,21 @@
 
 .map-location {
   max-width: 285px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(159, 159, 159, 1);
 }
 
 .itens {
   display: flex;
   gap: 72px;
+}
+
+.highlights {
+  padding-bottom: 9px;
+  color: rgba(159, 159, 159, 1);
 }
 
 .menu-links {
@@ -35,6 +45,10 @@
 .menu-links a {
   text-decoration: none;
   color: rgba(0, 0, 0, 1);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
 }
 
 .footer-links {
@@ -56,10 +70,6 @@
   list-style: none;
 }
 
-.highlights {
-  padding-bottom: 9px;
-}
-
 .divider {
   margin-left: 100px;
   margin-right: 100px;
@@ -70,4 +80,11 @@
   padding-left: 100px;
   padding-right: 100px;
   padding-top: 35px;
+}
+
+.credits-sentence {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
 }
