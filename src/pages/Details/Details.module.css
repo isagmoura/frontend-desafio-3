@@ -1,0 +1,41 @@
+.previous-pages {
+  display: flex;
+  align-items: center;
+  background-color: #f9f1e7;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-bottom: 35px;
+  height: 100px;
+}
+
+.link-home {
+  text-decoration: none;
+  color: #9f9f9f;
+  padding-right: 14px;
+}
+
+.link-shop {
+  text-decoration: none;
+  color: #9f9f9f;
+  padding-right: 21px;
+  padding-left: 14px;
+}
+
+.seta {
+  padding-right: 25px;
+}
+
+.current-page {
+  border-left: 2px solid #9f9f9f;
+  height: 37px;
+  display: flex;
+  align-items: center;
+}
+
+.current {
+  padding-left: 34px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+}

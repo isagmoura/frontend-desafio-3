@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import Shop from "./pages/Shop/Shop";
+import Details from "./pages/Details/Details";
 
 function App() {
   const [page, setPage] = useState<"home" | "shop" | "details">("home");
@@ -25,13 +26,7 @@ function App() {
       </div>
       <Header />
       <main>
-        {page === "home" ? (
-          <Home />
-        ) : page === "shop" ? (
-          <Shop />
-        ) : (
-          <>details page</>
-        )}
+        {page === "home" ? <Home /> : page === "shop" ? <Shop /> : <Details />}
       </main>
       <Footer />
     </>
