@@ -1,9 +1,113 @@
+.banner {
+  background-image: url("../../assets/bannerShop.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 316px;
+}
+
+.title-banner {
+  font-weight: 500;
+  text-align: center;
+  padding-top: 121px;
+  font-size: 48px;
+  line-height: 72px;
+}
+
+.home-shop {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+}
+
+.second-shop {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.link-home {
+  font-weight: 500;
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+  line-height: 24px;
+}
+
 .cards {
   display: flex;
   gap: 32px;
   flex-flow: row wrap;
   padding-left: 102px;
   padding-right: 102px;
+  padding-bottom: 70px;
+}
+
+.container-filter {
+  padding-left: 98px;
+  padding-right: 100px;
+  margin-bottom: 63px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  max-height: 100px;
+  align-items: center;
+  background-color: #f9f1e7;
+}
+
+.filter-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.range-results {
+  display: flex;
+  gap: 17px;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  gap: 38px;
+  padding-bottom: 85px;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #f9f1e7;
+}
+
+.number-page {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  text-decoration: none;
+  color: #000000;
+}
+
+.next-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 98px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #f9f1e7;
+}
+
+.next {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 30px;
+  text-decoration: none;
+  color: #000000;
 }
 
 @media screen and (min-width: 1920px) {
