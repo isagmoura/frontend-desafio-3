@@ -1,0 +1,25 @@
+.button-show-more {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 68px;
+}
+
+.show-more {
+  width: 245px;
+  height: 48px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+  border: 1px solid rgba(184, 142, 47, 1);
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.show-more-link {
+  text-decoration: none;
+  color: rgba(184, 142, 47, 1);
+  padding-top: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}

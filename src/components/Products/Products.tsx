@@ -8,6 +8,7 @@ import pingky from "../../assets/pingky.png";
 import potty from "../../assets/potty.png";
 import Product from "../Product/Product";
 import classes from "./Products.module.css";
+import Button from "../Button/Button";
 
 function Products() {
   return (
@@ -73,13 +74,7 @@ function Products() {
           price=""
         />
       </div>
-      <div className={classes["button-show-more"]}>
-        <div className={classes["show-more"]}>
-          <a href="#" className={classes["show-more-link"]}>
-            Show More
-          </a>
-        </div>
-      </div>
+      <Button />
     </>
   );
 }
