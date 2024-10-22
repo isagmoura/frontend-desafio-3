@@ -69,9 +69,53 @@
   text-align: left;
 }
 
-.newsletter {
-  margin-top: 0;
-  list-style: none;
+.itens-newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.form {
+  display: flex;
+  gap: 11px;
+}
+
+.email {
+  border-bottom: 1px solid #000000;
+  width: 200px;
+}
+
+.input-email {
+  font-size: 14px;
+  color: #9f9f9f;
+  font-weight: 400;
+  line-height: 21px;
+  border: none;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
+.subscribe {
+  border-bottom: 1px solid #000000;
+  width: 75px;
+}
+
+.button-subscribe {
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
 }
 
 .divider {
@@ -93,4 +137,21 @@
   line-height: 24px;
   text-align: left;
   font-weight: 400;
+}
+
+@media screen and (min-width: 1920px) {
+  .footer-itens {
+    display: flex;
+    gap: 280px;
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+
+  .itens {
+    gap: 200px;
+  }
+
+  .itens-newsletter {
+    padding-left: 60px;
+  }
 }

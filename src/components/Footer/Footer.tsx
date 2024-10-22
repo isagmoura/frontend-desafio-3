@@ -49,10 +49,28 @@ function Footer() {
             </ul>
           </div>
 
-          <div className={classes["itens"]}>
-            <ul className={classes["newsletter"]}>
-              <li className={classes["highlights"]}>Newsletter</li>
-            </ul>
+          <div className={classes["itens-newsletter"]}>
+            <div className={classes["newsletter"]}>
+              <p className={classes["highlights"]}>Newsletter</p>
+            </div>
+            <div className={classes["newsletter-form"]}>
+              <form action="" className={classes["form"]}>
+                <div className={classes["email"]}>
+                  <input
+                    className={classes["input-email"]}
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter Your Email Address"
+                  />
+                </div>
+                <div className={classes["subscribe"]}>
+                  <button type="submit" className={classes["button-subscribe"]}>
+                    SUBSCRIBE
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
