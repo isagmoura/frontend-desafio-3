@@ -10,22 +10,50 @@
   gap: 55px;
 }
 
-.img-benefits {
-  width: 60px;
-  height: 60px;
-  padding: 0px 3.61px 0px 3.61px;
-  gap: 0px;
-  opacity: 0px;
-}
-
 .descriptions {
   display: flex;
   flex-direction: column;
   padding-left: 10px;
 }
 
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 55px;
+  width: 1334px;
+}
 .cards-benefits {
   display: flex;
+  align-items: center;
+}
+
+.img-benefit1 {
+  width: 60px;
+  height: 60px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.img-benefit2 {
+  width: 60px;
+  height: 60px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.img-benefit3 {
+  width: 60px;
+  height: 60px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.img-benefit4 {
+  width: 60px;
+  height: 60px;
+  gap: 0px;
+  opacity: 0px;
 }
 
 .descriptive-title {
@@ -42,4 +70,15 @@
   line-height: 30px;
   text-align: left;
   color: rgba(137, 137, 137, 1);
+}
+
+@media screen and (min-width: 1920px) {
+  .cards-container {
+    padding-left: 80px;
+    padding-right: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 }

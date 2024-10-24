@@ -8,34 +8,42 @@ function Benefits() {
   return (
     <>
       <div className={classes["cards"]}>
-        <div className={classes["cards-benefits"]}>
-          <img src={trophy} className={classes["img-benefits"]} />
-          <div className={classes["descriptions"]}>
-            <p className={classes["descriptive-title"]}>High Quality</p>
-            <p className={classes["description-benefits"]}>
-              crafted from top materials
-            </p>
+        <div className={classes["cards-container"]}>
+          <div className={classes["cards-benefits"]}>
+            <img src={trophy} className={classes["img-benefit1"]} />
+            <div className={classes["descriptions"]}>
+              <p className={classes["descriptive-title"]}>High Quality</p>
+              <p className={classes["description-benefits"]}>
+                crafted from top materials
+              </p>
+            </div>
           </div>
-        </div>
-        <div className={classes["cards-benefits"]}>
-          <img src={guarantee} className={classes["img-benefits"]} />
-          <div className={classes["descriptions"]}>
-            <p className={classes["descriptive-title"]}>Warranty Protection</p>
-            <p className={classes["description-benefits"]}>Over 2 years</p>
+          <div className={classes["cards-benefits"]}>
+            <img src={guarantee} className={classes["img-benefit2"]} />
+            <div className={classes["descriptions"]}>
+              <p className={classes["descriptive-title"]}>
+                Warranty Protection
+              </p>
+              <p className={classes["description-benefits"]}>Over 2 years</p>
+            </div>
           </div>
-        </div>
-        <div className={classes["cards-benefits"]}>
-          <img src={shipping} className={classes["img-benefits"]} />
-          <div className={classes["descriptions"]}>
-            <p className={classes["descriptive-title"]}>Free Shipping</p>
-            <p className={classes["description-benefits"]}>Order over 150 $</p>
+          <div className={classes["cards-benefits"]}>
+            <img src={shipping} className={classes["img-benefit3"]} />
+            <div className={classes["descriptions"]}>
+              <p className={classes["descriptive-title"]}>Free Shipping</p>
+              <p className={classes["description-benefits"]}>
+                Order over 150 $
+              </p>
+            </div>
           </div>
-        </div>
-        <div className={classes["cards-benefits"]}>
-          <img src={support} className={classes["img-benefits"]} />
-          <div className={classes["descriptions"]}>
-            <p className={classes["descriptive-title"]}>24 / 7 Support</p>
-            <p className={classes["description-benefits"]}>Dedicated support</p>
+          <div className={classes["cards-benefits"]}>
+            <img src={support} className={classes["img-benefit4"]} />
+            <div className={classes["descriptions"]}>
+              <p className={classes["descriptive-title"]}>24 / 7 Support</p>
+              <p className={classes["description-benefits"]}>
+                Dedicated support
+              </p>
+            </div>
           </div>
         </div>
       </div>
