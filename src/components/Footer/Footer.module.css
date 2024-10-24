@@ -118,16 +118,6 @@ input:focus {
   cursor: pointer;
 }
 
-.thank-you-message {
-  max-width: 350px;
-  width: 310px;
-  font-family: "Poppins", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 21px;
-  color: #000000;
-}
-
 .divider {
   margin-left: 100px;
   margin-right: 100px;
@@ -158,7 +148,7 @@ input:focus {
   }
 
   .itens {
-    gap: 180px;
+    gap: 200px;
   }
 
   .itens-newsletter {
