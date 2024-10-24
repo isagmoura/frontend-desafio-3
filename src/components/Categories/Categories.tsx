@@ -3,7 +3,17 @@ import living from "../../assets/living.png";
 import bedroom from "../../assets/bedroom.png";
 import classes from "./Categories.module.css";
 
-function Categories() {
+interface Category {
+  id: number;
+  name: string;
+  image_link: string;
+}
+
+interface CategoriesProps {
+  categories: Category[];
+}
+
+function Categories({ categories }: CategoriesProps) {
   return (
     <>
       <div className={classes["title-categories-container"]}>
@@ -11,24 +21,14 @@ function Categories() {
       </div>
 
       <div className={classes["cards-categories"]}>
-        <div className={classes["categories"]}>
-          <a href="#">
-            <img src={dining} />
-            <p className={classes["title-link"]}>Dining</p>
-          </a>
-        </div>
-        <div className={classes["categories"]}>
-          <a href="#">
-            <img src={living} />
-            <p className={classes["title-link"]}>Living</p>
-          </a>
-        </div>
-        <div className={classes["categories"]}>
-          <a href="#">
-            <img src={bedroom} />
-            <p className={classes["title-link"]}>Bedroom</p>
-          </a>
-        </div>
+        {categories.map((category) => (
+          <div key={category.id} className={classes["categories"]}>
+            <a href="#">
+              <img src={category.image_link} alt={category.name} />
+              <p className={classes["title-link"]}>{category.name}</p>
+            </a>
+          </div>
+        ))}
       </div>
     </>
   );

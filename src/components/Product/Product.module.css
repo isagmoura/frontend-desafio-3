@@ -81,7 +81,7 @@
   flex-direction: column;
   align-items: center;
   opacity: 0;
-  /* transition: opacity 0.3s ease; */
+  transition: opacity 0.3s ease;
 }
 
 .products:hover .product-actions {
@@ -110,15 +110,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(184, 142, 47, 1);
+  color: #b88e2f; /* Cor do texto permanece */
+  background-color: rgba(255, 255, 255, 1); /* Define uma cor de fundo */
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.3s, background-color 0.3s, color 0.3s;
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-.product-hover:hover + .product-actions .see-details-button {
-  opacity: 1;
-  background-color: rgba(255, 255, 255, 1);
+.products:hover .see-details-button {
+  opacity: 1; /* Aparece quando o mouse passa por cima */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    1
+  ); /* Garante que o fundo continue branco */
+  color: #b88e2f; /* Mantém o texto visível */
 }
 
 .action-item + .action-item {
@@ -139,10 +146,16 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  color: rgba(255, 255, 255, 1);
+  color: #ffffff; /* Mantém a cor do texto branca */
   font-size: 16px;
   cursor: pointer;
   font-weight: 600;
+}
+
+.share-item:hover,
+.compare-item:hover,
+.like-item:hover {
+  color: #ffffff; /* Garante que a cor do texto permaneça branca no hover */
 }
 
 .share-item i,
