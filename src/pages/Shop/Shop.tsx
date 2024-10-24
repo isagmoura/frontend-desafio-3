@@ -27,14 +27,17 @@ function Shop() {
           <p className={classes["second-shop"]}>Shop</p>
         </div>
       </div>
+
       <div className={classes["container-filter"]}>
         <div className={classes["filter-icons"]}>
           <img src={filterIcon} />
-          <p>Filter</p>
-          <img src={fourballsicon} />
-          <img src={caixinha} />
-          <div>
-            <p>Showing 1-16 of 32 results</p>
+          <p className={classes["filter-p"]}>Filter</p>
+          <img src={fourballsicon} className={classes["fourballsicon"]} />
+          <img src={caixinha} className={classes["caixinha"]} />
+          <div className={classes["showing"]}>
+            <p className={classes["showing-results"]}>
+              Showing 1-16 of 32 results
+            </p>
           </div>
         </div>
 
@@ -165,26 +168,18 @@ function Shop() {
         />
       </div>
       <div className={classes["pages"]}>
-        <div className={classes["page"]}>
-          <a href="#" className={classes["number-page"]}>
-            1
-          </a>
-        </div>
-        <div className={classes["page"]}>
-          <a href="#" className={classes["number-page"]}>
-            2
-          </a>
-        </div>
-        <div className={classes["page"]}>
-          <a href="#" className={classes["number-page"]}>
-            3
-          </a>
-        </div>
-        <div className={classes["next-page"]}>
-          <a href="#" className={classes["next"]}>
-            Next
-          </a>
-        </div>
+        <a href="#" className={classes["number-page1"]}>
+          <div className={classes["page1"]}>1</div>
+        </a>
+        <a href="#" className={classes["number-page"]}>
+          <div className={classes["page"]}>2</div>
+        </a>
+        <a href="#" className={classes["number-page"]}>
+          <div className={classes["page"]}>3</div>
+        </a>
+        <a href="#" className={classes["next"]}>
+          <div className={classes["next-page"]}>Next</div>
+        </a>
       </div>
       <Benefits />
     </>

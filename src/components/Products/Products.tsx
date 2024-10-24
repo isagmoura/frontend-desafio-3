@@ -1,78 +1,61 @@
-import product from "../../assets/product.png";
-import chair from "../../assets/chair.png";
-import whitesofa from "../../assets/whitesofa.png";
-import bartable from "../../assets/bartable.png";
-import grifo from "../../assets/grifo.png";
-import muggo from "../../assets/muggo.png";
-import pingky from "../../assets/pingky.png";
-import potty from "../../assets/potty.png";
+import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import classes from "./Products.module.css";
 import Button from "../Button/Button";
 
+// Definindo a interface para os produtos
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  image_link: string;
+  discount: string;
+  price: string;
+}
+
 function Products() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data: Product[]) => {
+        console.log("Products fetched:", data);
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>Loading products...</p>;
+  }
+
   return (
     <>
       <div className={classes["title-products-container"]}>
         <h2 className={classes["title-products"]}>Our Products</h2>
       </div>
       <div className={classes["cards"]}>
-        <Product
-          imageLink={product}
-          title="Syltherine"
-          description="Stylish cafe chair"
-          discount="Rp 2.500.000"
-          price="Rp 3.500.000"
-        />
-        <Product
-          imageLink={chair}
-          title="Leviosa"
-          description="Stylish cafe chair"
-          discount="Rp 2.500.000"
-          price=""
-        />
-        <Product
-          imageLink={whitesofa}
-          title="Lolito"
-          description="Luxury big sofa"
-          discount="Rp 7.000.000"
-          price="Rp 14.000.000"
-        />
-        <Product
-          imageLink={bartable}
-          title="Respira"
-          description="Outdoor bar table and stool"
-          discount="Rp 500.000"
-          price=""
-        />
-        <Product
-          imageLink={grifo}
-          title="Grifo"
-          description="Night lamp"
-          discount="Rp 1.500.000"
-          price=""
-        />
-        <Product
-          imageLink={muggo}
-          title="Muggo"
-          description="Small mug"
-          discount="Rp 150.000"
-          price=""
-        />
-        <Product
-          imageLink={pingky}
-          title="Pingky"
-          description="Cute bed set"
-          discount="Rp 7.000.000"
-          price="Rp 14.000.000"
-        />
-        <Product
-          imageLink={potty}
-          title="Potty"
-          description="Minimalist flower pot"
-          discount="Rp 500.000"
-          price=""
-        />
+        {products.map((product) => (
+          <Product
+            key={product.id}
+            imageLink={product.image_link}
+            title={product.name}
+            description={product.description}
+            discount={product.discount}
+            price={product.price}
+          />
+        ))}
       </div>
       <Button />
     </>
