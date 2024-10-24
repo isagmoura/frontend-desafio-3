@@ -1,7 +1,16 @@
+import React, { useState } from "react";
 import funiro from "../../assets/funiro.png";
 import classes from "./Footer.module.css";
 
 function Footer() {
+  const [email, setEmail] = useState<string>("");
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const subscribeToNewsletter = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
     <>
       <div className={classes["footer-itens"]}>
@@ -54,22 +63,38 @@ function Footer() {
               <p className={classes["highlights"]}>Newsletter</p>
             </div>
             <div className={classes["newsletter-form"]}>
-              <form action="" className={classes["form"]}>
-                <div className={classes["email"]}>
-                  <input
-                    className={classes["input-email"]}
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Enter Your Email Address"
-                  />
-                </div>
-                <div className={classes["subscribe"]}>
-                  <button type="submit" className={classes["button-subscribe"]}>
-                    SUBSCRIBE
-                  </button>
-                </div>
-              </form>
+              {!submitted ? (
+                <form
+                  action=""
+                  className={classes["form"]}
+                  onSubmit={subscribeToNewsletter}
+                >
+                  <div className={classes["email"]}>
+                    <input
+                      className={classes["input-email"]}
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="Enter Your Email Address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className={classes["subscribe"]}>
+                    <button
+                      type="submit"
+                      className={classes["button-subscribe"]}
+                    >
+                      SUBSCRIBE
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <span className={classes["thank-you-message"]}>
+                  Thank you for subscribing to our Newsletter. We'll send you
+                  news on {email}.
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -77,7 +102,7 @@ function Footer() {
       <hr className={classes["divider"]} />
       <div className={classes["credits"]}>
         <p className={classes["credits-sentence"]}>
-          2023 furino. All rights reverved
+          2023 furino. All rights reserved
         </p>
       </div>
     </>

@@ -3,18 +3,25 @@ import Product from "../Product/Product";
 import classes from "./Products.module.css";
 import Button from "../Button/Button";
 
-// Definindo a interface para os produtos
-interface Product {
+export interface ProductEntity {
   id: number;
   name: string;
   description: string;
-  image_link: string;
+  large_description: string;
+  image_link: string | null;
+  other_images_link: string | null;
   discount: string;
+  discount_price: string | null;
+  discount_percent: string | null;
+  created_date: string | null;
+  updated_dated: string | null;
   price: string;
+  is_new: boolean | null;
+  category: any;
 }
 
 function Products() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductEntity[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -25,7 +32,7 @@ function Products() {
         }
         return response.json();
       })
-      .then((data: Product[]) => {
+      .then((data: ProductEntity[]) => {
         console.log("Products fetched:", data);
         setProducts(data);
         setLoading(false);
@@ -47,14 +54,7 @@ function Products() {
       </div>
       <div className={classes["cards"]}>
         {products.map((product) => (
-          <Product
-            key={product.id}
-            imageLink={product.image_link}
-            title={product.name}
-            description={product.description}
-            discount={product.discount}
-            price={product.price}
-          />
+          <Product key={product.id} product={product} />
         ))}
       </div>
       <Button />

@@ -13,8 +13,36 @@ import seta from "../../assets/seta.png";
 import filterIcon from "../../assets/filterIcon.png";
 import fourballsicon from "../../assets/fourballsicon.png";
 import caixinha from "../../assets/caixinha.png";
+import { ProductEntity } from "../../components/Products/Products";
+import { useEffect, useState } from "react";
 
 function Shop() {
+  const [products, setProducts] = useState<ProductEntity[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data: ProductEntity[]) => {
+        console.log("Products fetched:", data);
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>Loading products...</p>;
+  }
+
   return (
     <>
       <div className={classes["banner"]}>
@@ -54,118 +82,13 @@ function Shop() {
       </div>
 
       <div className={classes["cards"]}>
-        <Product
-          imageLink={product}
-          title="Syltherine"
-          description="Stylish cafe chair"
-          discount="Rp 2.500.000"
-          price="Rp 3.500.000"
-        />
-        <Product
-          imageLink={chair}
-          title="Leviosa"
-          description="Stylish cafe chair"
-          discount="Rp 2.500.000"
-          price=""
-        />
-        <Product
-          imageLink={whitesofa}
-          title="Lolito"
-          description="Luxury big sofa"
-          discount="Rp 7.000.000"
-          price="Rp 14.000.000"
-        />
-        <Product
-          imageLink={bartable}
-          title="Respira"
-          description="Outdoor bar table and stool"
-          discount="Rp 500.000"
-          price=""
-        />
-        <Product
-          imageLink={grifo}
-          title="Grifo"
-          description="Night lamp"
-          discount="Rp 1.500.000"
-          price=""
-        />
-        <Product
-          imageLink={muggo}
-          title="Muggo"
-          description="Small mug"
-          discount="Rp 150.000"
-          price=""
-        />
-        <Product
-          imageLink={pingky}
-          title="Pingky"
-          description="Cute bed set"
-          discount="Rp 7.000.000"
-          price="Rp 14.000.000"
-        />
-        <Product
-          imageLink={potty}
-          title="Potty"
-          description="Minimalist flower pot"
-          discount="Rp 500.000"
-          price=""
-        />
-        <Product
-          imageLink={product}
-          title="Syltherine"
-          description="Stylish cafe chair"
-          discount="Rp 2.500.000"
-          price="Rp 3.500.000"
-        />
-        <Product
-          imageLink={chair}
-          title="Leviosa"
-          description="Stylish cafe chair"
-          discount="Rp 2.500.000"
-          price=""
-        />
-        <Product
-          imageLink={whitesofa}
-          title="Lolito"
-          description="Luxury big sofa"
-          discount="Rp 7.000.000"
-          price="Rp 14.000.000"
-        />
-        <Product
-          imageLink={bartable}
-          title="Respira"
-          description="Outdoor bar table and stool"
-          discount="Rp 500.000"
-          price=""
-        />
-        <Product
-          imageLink={grifo}
-          title="Grifo"
-          description="Night lamp"
-          discount="Rp 1.500.000"
-          price=""
-        />
-        <Product
-          imageLink={muggo}
-          title="Muggo"
-          description="Small mug"
-          discount="Rp 150.000"
-          price=""
-        />
-        <Product
-          imageLink={pingky}
-          title="Pingky"
-          description="Cute bed set"
-          discount="Rp 7.000.000"
-          price="Rp 14.000.000"
-        />
-        <Product
-          imageLink={potty}
-          title="Potty"
-          description="Minimalist flower pot"
-          discount="Rp 500.000"
-          price=""
-        />
+        {products.map((product) => (
+          <Product key={product.id} product={product} />
+        ))}
+        {/* Placeholder - todo remove */}
+        {products.map((product) => (
+          <Product key={product.id} product={product} />
+        ))}
       </div>
       <div className={classes["pages"]}>
         <a href="#" className={classes["number-page1"]}>
