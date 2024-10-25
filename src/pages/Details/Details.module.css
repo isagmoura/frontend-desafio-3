@@ -155,7 +155,25 @@
   gap: 16px;
 }
 
-.size {
+.size1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(249, 241, 231, 1);
+  border-radius: 5px;
+}
+.size2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(249, 241, 231, 1);
+  border-radius: 5px;
+}
+.size3 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -165,12 +183,29 @@
   border-radius: 5px;
 }
 
+.selectedSize {
+  background-color: rgba(184, 142, 47, 1);
+  color: rgba(255, 255, 255, 1);
+}
+
 .size-link {
   text-decoration: none;
   color: rgba(0, 0, 0, 1);
 }
 
-.letter-size {
+.letter-size1 {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19.5px;
+}
+
+.letter-size2 {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19.5px;
+}
+
+.letter-size3 {
   font-weight: 400;
   font-size: 13px;
   line-height: 19.5px;
