@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import classes from "./Products.module.css";
 import Button from "../Button/Button";
+import axios from "axios";
 
 export interface ProductEntity {
   id: number;
@@ -25,16 +26,10 @@ function Products() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch("/api/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data: ProductEntity[]) => {
-        console.log("Products fetched:", data);
-        setProducts(data);
+    axios<ProductEntity[]>("/api/products", { params: { limit: 8 } })
+      .then((res) => {
+        console.log("Products fetched:", res);
+        setProducts(res.data);
         setLoading(false);
       })
       .catch((error) => {

@@ -7,6 +7,7 @@ import fourballsicon from "../../assets/fourballsicon.png";
 import caixinha from "../../assets/caixinha.png";
 import { ProductEntity } from "../../components/Products/Products";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Shop() {
   const [products, setProducts] = useState<ProductEntity[]>([]);
@@ -40,9 +41,9 @@ function Shop() {
       <div className={classes["banner"]}>
         <h2 className={classes["title-banner"]}>Shop</h2>
         <div className={classes["home-shop"]}>
-          <a href="#" className={classes["link-home"]}>
+          <Link to={"/"} className={classes["link-home"]}>
             Home
-          </a>
+          </Link>
           <img src={seta} className={classes["seta"]} />
           <p className={classes["second-shop"]}>Shop</p>
         </div>
@@ -83,11 +84,11 @@ function Shop() {
       </div>
 
       <div className={classes["cards"]}>
-        {products.map((product) => (
+        {products.slice(0, 8).map((product) => (
           <Product key={product.id} product={product} />
         ))}
         {/* Placeholder - todo remove */}
-        {products.map((product) => (
+        {products.slice(0, 8).map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </div>

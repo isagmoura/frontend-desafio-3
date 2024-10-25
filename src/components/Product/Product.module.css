@@ -168,7 +168,7 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  color: #ffffff; /* Mantém a cor do texto branca */
+  color: #ffffff;
   font-size: 16px;
   cursor: pointer;
   font-weight: 600;
@@ -177,7 +177,7 @@
 .share-item:hover,
 .compare-item:hover,
 .like-item:hover {
-  color: #ffffff; /* Garante que a cor do texto permaneça branca no hover */
+  color: #ffffff;
 }
 
 .share-item i,
