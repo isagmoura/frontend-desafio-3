@@ -57,6 +57,13 @@
   background-color: #f9f1e7;
 }
 
+.filters-page {
+  display: flex;
+  justify-content: space-between;
+  gap: 348px;
+  width: 100%;
+}
+
 .filter-icons {
   display: flex;
   gap: 12px;
@@ -92,7 +99,76 @@
 
 .range-results {
   display: flex;
+  align-items: center;
   gap: 17px;
+}
+
+.show-number {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.input-number {
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: rgba(159, 159, 159, 1);
+  background-color: rgba(255, 255, 255, 1);
+  border: none;
+  box-sizing: border-box;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input-number::-webkit-outer-spin-button,
+.input-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-number[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.short-by {
+  padding-left: 12px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.sort-order {
+  width: 188px;
+  height: 55px;
+  font-size: 16px;
+  border: none;
+  box-sizing: border-box;
+  appearance: none;
+  background-color: rgba(255, 255, 255, 1);
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  color: rgba(159, 159, 159, 1);
+  padding-left: 30px;
+}
+
+.sort-order:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.sort-order option {
+  border: none !important;
+  border-radius: 0 !important;
 }
 
 .pages {
@@ -157,5 +233,19 @@
   .cards {
     justify-content: center;
     gap: 70px;
+  }
+
+  .container-filter {
+    padding-left: 150px;
+    padding-right: 150px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .filters-page {
+    display: flex;
+    justify-content: space-between;
+    gap: 348px;
+    width: 100%;
   }
 }

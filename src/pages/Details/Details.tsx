@@ -13,16 +13,13 @@ import facebook from "../../assets/facebook.png";
 import linkedin from "../../assets/linkedin.png";
 import twitter from "../../assets/twitter.png";
 import Product from "../../components/Product/Product";
-import product from "../../assets/product.png";
-import chair from "../../assets/chair.png";
-import whitesofa from "../../assets/whitesofa.png";
-import bartable from "../../assets/bartable.png";
 import Button from "../../components/Button/Button";
 import { useEffect, useState } from "react";
 
 function Details() {
   const [products, setProducts] = useState<ProductEntity[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedSize, setSelectedSize] = useState<string>("L");
 
   useEffect(() => {
     fetch("/api/products")
@@ -42,6 +39,10 @@ function Details() {
         setLoading(false);
       });
   }, []);
+
+  const handleSizeClick = (size: string) => {
+    setSelectedSize(size);
+  };
 
   if (loading) {
     return <p>Loading products...</p>;
@@ -117,20 +118,44 @@ function Details() {
             <div className={classes["sizes"]}>
               <p className={classes["size-title"]}>Size</p>
               <div className={classes["three-sizes"]}>
-                <a href="#" className={classes["size-link"]}>
-                  <div className={classes["size"]}>
-                    <p className={classes["letter-size"]}>L</p>
+                <a
+                  href="#"
+                  className={classes["size-link"]}
+                  onClick={() => handleSizeClick("L")}
+                >
+                  <div
+                    className={`${classes["size1"]} ${
+                      selectedSize === "L" ? classes.selectedSize : ""
+                    }`}
+                  >
+                    <p className={classes["letter-size1"]}>L</p>
                   </div>
                 </a>
 
-                <a href="#" className={classes["size-link"]}>
-                  <div className={classes["size"]}>
-                    <p className={classes["letter-size"]}>XL</p>
+                <a
+                  href="#"
+                  className={classes["size-link"]}
+                  onClick={() => handleSizeClick("XL")}
+                >
+                  <div
+                    className={`${classes["size2"]} ${
+                      selectedSize === "XL" ? classes.selectedSize : ""
+                    }`}
+                  >
+                    <p className={classes["letter-size2"]}>XL</p>
                   </div>
                 </a>
-                <a href="#" className={classes["size-link"]}>
-                  <div className={classes["size"]}>
-                    <p className={classes["letter-size"]}>XS</p>
+                <a
+                  href="#"
+                  className={classes["size-link"]}
+                  onClick={() => handleSizeClick("XS")}
+                >
+                  <div
+                    className={`${classes["size3"]} ${
+                      selectedSize === "XS" ? classes.selectedSize : ""
+                    }`}
+                  >
+                    <p className={classes["letter-size3"]}>XS</p>
                   </div>
                 </a>
               </div>
