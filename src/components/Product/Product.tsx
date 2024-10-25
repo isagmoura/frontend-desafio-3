@@ -3,6 +3,7 @@ import compare from "../../assets/compare.png";
 import heart from "../../assets/heart.png";
 import classes from "./Product.module.css";
 import { ProductEntity } from "../Products/Products";
+import { Link } from "react-router-dom";
 
 function Product(props: { product: ProductEntity }) {
   if (!props.product.image_link) {
@@ -17,7 +18,7 @@ function Product(props: { product: ProductEntity }) {
     <>
       <div className={classes["cards-products"]}>
         <div className={classes["products"]}>
-          <a href="#">
+          <Link to="/details">
             <img src={props.product.image_link} />
             <div className={classes["circle"]}>
               <p className={classes["discount-or-new"]}>-30%</p>
@@ -59,7 +60,7 @@ function Product(props: { product: ProductEntity }) {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </>

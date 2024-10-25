@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import funiro from "../../assets/funiro.png";
 import classes from "./Footer.module.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const [email, setEmail] = useState<string>("");
@@ -29,10 +30,10 @@ function Footer() {
             <ul className={classes["menu-links"]}>
               <li className={classes["highlights"]}>Links</li>
               <li>
-                <a href="#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="#">Shop</a>
+                <Link to="/shop">Shop</Link>
               </li>
               <li>
                 <a href="#">About</a>

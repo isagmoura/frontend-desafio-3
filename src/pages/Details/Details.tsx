@@ -8,18 +8,30 @@ import stars from "../../assets/stars.png";
 import colorPurple from "../../assets/colorPurple.png";
 import colorBlack from "../../assets/colorBlack.png";
 import colorBeige from "../../assets/colorBeige.png";
-import sofaGrande from "../../assets/sofaGrande.png";
 import facebook from "../../assets/facebook.png";
 import linkedin from "../../assets/linkedin.png";
 import twitter from "../../assets/twitter.png";
 import Product from "../../components/Product/Product";
 import Button from "../../components/Button/Button";
+import { ProductEntity } from "../../components/Products/Products";
 import { useEffect, useState } from "react";
+import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+
+export function detailsLoader({ params }: LoaderFunctionArgs) {
+  return fetch(`/api/products/${params.id}`).then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    return response.json() as Promise<ProductEntity>;
+  });
+}
 
 function Details() {
   const [products, setProducts] = useState<ProductEntity[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSize, setSelectedSize] = useState<string>("L");
+  const product = useLoaderData() as Awaited<ReturnType<typeof detailsLoader>>;
 
   useEffect(() => {
     fetch("/api/products")
@@ -62,7 +74,7 @@ function Details() {
           <img src={seta} className={classes["seta"]} />
         </div>
         <div className={classes["current-page"]}>
-          <p className={classes["current"]}>Asgaard sofa</p>
+          <p className={classes["current"]}>{product.name}</p>
         </div>
       </div>
       <div className={classes["details-product-container"]}>
@@ -91,29 +103,23 @@ function Details() {
         <div className={classes["big-photo-container"]}>
           <a href="#">
             <div className={classes["big-photo-sofa"]}>
-              <img src={sofaGrande} className={classes["big-couch"]} />
+              <img src={product.image_link!} className={classes["big-couch"]} />
             </div>
           </a>
         </div>
 
         <div className={classes["details-product"]}>
           <div>
-            <h2 className={classes["title-product"]}>Asgaard sofa</h2>
-            <p className={classes["cost-product"]}>Rs. 250,000.00</p>
+            <h2 className={classes["title-product"]}>{product.name}</h2>
+            <p className={classes["cost-product"]}>Rp. {product.price}</p>
             <div className={classes["product-evaluation"]}>
               <img src={stars} className={classes["stars"]} />
               <div className={classes["review"]}>
                 <p className={classes["review-p"]}>5 Customer Review</p>
               </div>
             </div>
-            <p>
-              Setting the bar as one of the loudest speakers in its class, the
-              <br />
-              Kilburn is a compact, stout-hearted hero with a well-balanced
-              <br />
-              audio which boasts a clear midrange and extended highs for a
-              <br />
-              sound.
+            <p className={classes["large-description"]}>
+              {product.large_description}
             </p>
             <div className={classes["sizes"]}>
               <p className={classes["size-title"]}>Size</p>
