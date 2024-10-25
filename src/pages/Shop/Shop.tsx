@@ -1,13 +1,5 @@
 import Product from "../../components/Product/Product";
 import Benefits from "../../components/Benefits/Benefits";
-import product from "../../assets/product.png";
-import chair from "../../assets/chair.png";
-import whitesofa from "../../assets/whitesofa.png";
-import bartable from "../../assets/bartable.png";
-import grifo from "../../assets/grifo.png";
-import muggo from "../../assets/muggo.png";
-import pingky from "../../assets/pingky.png";
-import potty from "../../assets/potty.png";
 import classes from "./Shop.module.css";
 import seta from "../../assets/seta.png";
 import filterIcon from "../../assets/filterIcon.png";
@@ -57,27 +49,36 @@ function Shop() {
       </div>
 
       <div className={classes["container-filter"]}>
-        <div className={classes["filter-icons"]}>
-          <img src={filterIcon} />
-          <p className={classes["filter-p"]}>Filter</p>
-          <img src={fourballsicon} className={classes["fourballsicon"]} />
-          <img src={caixinha} className={classes["caixinha"]} />
-          <div className={classes["showing"]}>
-            <p className={classes["showing-results"]}>
-              Showing 1-16 of 32 results
-            </p>
+        <div className={classes["filters-page"]}>
+          <div className={classes["filter-icons"]}>
+            <img src={filterIcon} />
+            <p className={classes["filter-p"]}>Filter</p>
+            <img src={fourballsicon} className={classes["fourballsicon"]} />
+            <img src={caixinha} className={classes["caixinha"]} />
+            <div className={classes["showing"]}>
+              <p className={classes["showing-results"]}>
+                Showing 1-16 of 32 results
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className={classes["range-results"]}>
-          <p>Show</p>
-          <select name="number" id="number">
-            <option value="valor1">16</option>
-          </select>
-          <p>Short by</p>
-          <select name="string" id="string">
-            Default
-          </select>
+          <div className={classes["range-results"]}>
+            <p className={classes["show-number"]}>Show</p>
+            <input
+              type="number"
+              id="pageInput"
+              placeholder="16"
+              min="1"
+              max="100"
+              className={classes["input-number"]}
+            />
+            <p className={classes["short-by"]}>Short by</p>
+            <select name="string" id="string" className={classes["sort-order"]}>
+              <option value="">Default</option>
+              <option value="ascending">Ascending</option>
+              <option value="descending">Descending</option>
+            </select>
+          </div>
         </div>
       </div>
 

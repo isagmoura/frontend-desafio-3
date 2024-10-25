@@ -19,6 +19,9 @@ function Product(props: { product: ProductEntity }) {
         <div className={classes["products"]}>
           <a href="#">
             <img src={props.product.image_link} />
+            <div className={classes["circle"]}>
+              <p className={classes["discount-or-new"]}>-30%</p>
+            </div>
             <div className={classes["information-products"]}>
               <p className={classes["title-product"]}> {props.product.name}</p>
               <p className={classes["description-product"]}>
@@ -29,7 +32,7 @@ function Product(props: { product: ProductEntity }) {
                   Rp {props.product.price}
                 </p>
                 <p className={classes["old-price"]}>
-                  {props.product.discount_price}{" "}
+                  Rp {props.product.discount_price}
                 </p>
               </div>
             </div>
