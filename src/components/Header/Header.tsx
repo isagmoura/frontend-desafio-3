@@ -4,6 +4,7 @@ import search from "../../assets/search.png";
 import heartLike from "../../assets/heartLike.png";
 import shoppingCart from "../../assets/shoppingCart.png";
 import classes from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -14,10 +15,10 @@ function Header() {
       <nav>
         <ul className={classes["menu-header"]}>
           <li>
-            <a href="#">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="#">Shop</a>
+            <Link to="/shop">Shop</Link>
           </li>
           <li>
             <a href="#">About</a>

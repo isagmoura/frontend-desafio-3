@@ -2,6 +2,7 @@ import dining from "../../assets/dining.png";
 import living from "../../assets/living.png";
 import bedroom from "../../assets/bedroom.png";
 import classes from "./Categories.module.css";
+import { Link } from "react-router-dom";
 
 interface Category {
   id: number;
@@ -23,10 +24,10 @@ function Categories({ categories }: CategoriesProps) {
       <div className={classes["cards-categories"]}>
         {categories.map((category) => (
           <div key={category.id} className={classes["categories"]}>
-            <a href="#">
+            <Link to="/shop">
               <img src={category.image_link} alt={category.name} />
               <p className={classes["title-link"]}>{category.name}</p>
-            </a>
+            </Link>
           </div>
         ))}
       </div>
