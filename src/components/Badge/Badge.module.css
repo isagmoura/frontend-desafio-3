@@ -1,0 +1,28 @@
+.circle {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: 24px;
+  left: 213px;
+  border-radius: 50%;
+}
+
+.new {
+  background-color: rgba(46, 193, 172, 1);
+}
+
+.discount {
+  background-color: rgba(233, 113, 113, 1);
+}
+
+.discount-or-new {
+  color: rgba(255, 255, 255, 1);
+  font-size: 16px;
+  font-weight: 500;
+  width: 42px;
+  height: 24px;
+}

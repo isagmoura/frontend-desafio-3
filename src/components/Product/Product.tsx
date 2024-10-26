@@ -4,24 +4,23 @@ import heart from "../../assets/heart.png";
 import classes from "./Product.module.css";
 import { ProductEntity } from "../Products/Products";
 import { Link } from "react-router-dom";
+import Badge from "../Badge/Badge";
 
 function Product(props: { product: ProductEntity }) {
   if (!props.product.image_link) {
     return null;
   }
 
-  // if (!props.product.discount) {
-  //   return "";
-  // }
-
   return (
     <>
       <div className={classes["cards-products"]}>
         <div className={classes["products"]}>
           <img src={props.product.image_link} />
-          <div className={classes["circle"]}>
-            <p className={classes["discount-or-new"]}>-30%</p>
-          </div>
+          {props.product.is_new ? (
+            <Badge type="new" />
+          ) : props.product.discount_percent ? (
+            <Badge type="discount" discount={props.product.discount_percent} />
+          ) : null}
           <div className={classes["information-products"]}>
             <p className={classes["title-product"]}> {props.product.name}</p>
             <p className={classes["description-product"]}>

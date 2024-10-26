@@ -41,9 +41,9 @@ function Details() {
         }
         return response.json();
       })
-      .then((data: ProductEntity[]) => {
+      .then((data: { items: ProductEntity[] }) => {
         console.log("Products fetched:", data);
-        setProducts(data);
+        setProducts(data.items);
         setLoading(false);
       })
       .catch((error) => {

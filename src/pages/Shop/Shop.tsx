@@ -21,9 +21,9 @@ function Shop() {
         }
         return response.json();
       })
-      .then((data: ProductEntity[]) => {
+      .then((data: { items: ProductEntity[] }) => {
         console.log("Products fetched:", data);
-        setProducts(data);
+        setProducts(data.items);
         setLoading(false);
       })
       .catch((error) => {
@@ -84,10 +84,6 @@ function Shop() {
       </div>
 
       <div className={classes["cards"]}>
-        {products.slice(0, 8).map((product) => (
-          <Product key={product.id} product={product} />
-        ))}
-        {/* Placeholder - todo remove */}
         {products.slice(0, 8).map((product) => (
           <Product key={product.id} product={product} />
         ))}
