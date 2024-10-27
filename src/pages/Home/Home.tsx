@@ -23,7 +23,6 @@ function Home() {
         return response.json();
       })
       .then((data: CategoryEntity[]) => {
-        console.log("Categories fetched:", data);
         setCategories(data);
       })
       .catch((error) => {
