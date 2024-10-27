@@ -3,6 +3,7 @@ import Product from "../Product/Product";
 import classes from "./Products.module.css";
 import Button from "../Button/Button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export interface ProductEntity {
   id: number;
@@ -17,17 +18,18 @@ export interface ProductEntity {
   updated_dated: string | null;
   price: string;
   is_new: boolean | null;
-  category: any;
 }
 
 function Products() {
   const [products, setProducts] = useState<ProductEntity[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios<{ items: ProductEntity[] }>("/api/products", { params: { limit: 8 } })
+    axios<{ items: ProductEntity[] }>("/api/products", {
+      params: { limit: 8, hasDiscount: true },
+    })
       .then((res) => {
-        console.log("Products fetched:", res);
         setProducts(res.data.items);
         setLoading(false);
       })
@@ -51,7 +53,7 @@ function Products() {
           <Product key={product.id} product={product} />
         ))}
       </div>
-      <Button />
+      <Button onClick={() => navigate("/shop")} />
     </>
   );
 }

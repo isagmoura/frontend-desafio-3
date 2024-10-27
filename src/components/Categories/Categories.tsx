@@ -1,8 +1,5 @@
-import dining from "../../assets/dining.png";
-import living from "../../assets/living.png";
-import bedroom from "../../assets/bedroom.png";
-import classes from "./Categories.module.css";
 import { Link } from "react-router-dom";
+import classes from "./Categories.module.css";
 
 interface Category {
   id: number;
@@ -22,14 +19,20 @@ function Categories({ categories }: CategoriesProps) {
       </div>
 
       <div className={classes["cards-categories"]}>
-        {categories.map((category) => (
-          <div key={category.id} className={classes["categories"]}>
-            <Link to="/shop">
-              <img src={category.image_link} alt={category.name} />
-              <p className={classes["title-link"]}>{category.name}</p>
-            </Link>
-          </div>
-        ))}
+        {categories.map((category) => {
+          const params = new URLSearchParams();
+
+          params.set("categories", category.id.toString());
+
+          return (
+            <div key={category.id} className={classes["categories"]}>
+              <Link to={`/shop?${params.toString()}`}>
+                <img src={category.image_link} alt={category.name} />
+                <p className={classes["title-link"]}>{category.name}</p>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </>
   );
