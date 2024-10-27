@@ -60,7 +60,7 @@
 .filters-page {
   display: flex;
   justify-content: space-between;
-  gap: 348px;
+  align-items: center;
   width: 100%;
 }
 
@@ -68,6 +68,18 @@
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+.filter-categories {
+  display: flex;
+  gap: 17px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter-checkbox {
+  display: flex;
+  gap: 15px;
 }
 
 .filter-p {
@@ -160,7 +172,8 @@
   padding-left: 30px;
 }
 
-.sort-order:focus {
+.sort-order:focus,
+.input-number:focus {
   border: none !important;
   box-shadow: none !important;
   outline: none !important;

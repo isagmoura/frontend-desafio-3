@@ -166,16 +166,12 @@
   border-radius: 5px;
   font-size: 13px;
   line-height: 19.5px;
+  cursor: pointer;
 }
 
 .selectedSize {
   background-color: rgba(184, 142, 47, 1);
   color: rgba(255, 255, 255, 1);
-}
-
-.size-link {
-  text-decoration: none;
-  color: rgba(0, 0, 0, 1);
 }
 
 .colours {
@@ -194,6 +190,10 @@
 .color-container {
   display: flex;
   gap: 16px;
+}
+
+.color-choice {
+  cursor: pointer;
 }
 
 .actions-buy {
@@ -217,32 +217,28 @@
   border: 1px solid rgba(159, 159, 159, 1);
 }
 
-.add {
-  text-decoration: none;
-  color: rgba(0, 0, 0, 1);
-}
-
 .minus {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
 .quantity {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
 .plus {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-}
-
-.link-cart {
-  text-decoration: none;
   color: rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
 .add-cart {
@@ -253,17 +249,13 @@
   height: 64px;
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
 .add-to-cart {
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
-}
-
-.link-compare {
-  text-decoration: none;
-  color: rgba(0, 0, 0, 1);
 }
 
 .compare {
@@ -275,6 +267,7 @@
   height: 64px;
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
 .plus-p {
@@ -358,6 +351,7 @@
 .social-media {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .description-container {
