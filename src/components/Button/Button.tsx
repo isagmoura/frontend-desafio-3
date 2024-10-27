@@ -1,13 +1,15 @@
 import classes from "./Button.module.css";
 
-function Button() {
+function Button(props: {
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}) {
   return (
     <>
       <div className={classes["button-show-more"]}>
         <div className={classes["show-more"]}>
-          <a href="#" className={classes["show-more-link"]}>
+          <button className={classes["show-more-link"]} onClick={props.onClick}>
             Show More
-          </a>
+          </button>
         </div>
       </div>
     </>
