@@ -17,8 +17,7 @@ function getPageLink(url: URL, page: number, pageSize: number) {
 
 function Pagination(props: PaginationProps) {
   const url = new URL(window.location.href);
-  const lastPage = Math.round(props.total / props.pageSize);
-
+  const lastPage = Math.ceil(props.total / props.pageSize);
   const pageDelta =
     props.currentPage === 1 || props.currentPage === lastPage ? 2 : 1;
   const lowRange = props.currentPage - pageDelta;

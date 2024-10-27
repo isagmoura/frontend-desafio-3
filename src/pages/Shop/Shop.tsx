@@ -23,11 +23,7 @@ export async function shopLoader({ request }: LoaderFunctionArgs) {
     meta: { total: number };
     items: ProductEntity[];
   }>("/api/products", {
-    params: {
-      limit: url.searchParams.get("limit"),
-      offset: url.searchParams.get("offset"),
-      categories: url.searchParams.get("categories"),
-    },
+    params: Object.fromEntries(url.searchParams.entries()),
   });
   const categoriesRequest = await axios<CategoryEntity[]>("/api/categories");
 
@@ -43,7 +39,7 @@ function Shop() {
     ReturnType<typeof shopLoader>
   >;
   const url = new URL(window.location.href);
-  const [isShowingFilters, setIsShowingFilters] = useState(true); //
+  const [isShowingFilters, setIsShowingFilters] = useState(false);
   const productsPerPage = Number(url.searchParams.get("limit") ?? 16);
   const currentPage =
     Number(url.searchParams.get("offset") ?? 0) / productsPerPage + 1;
@@ -77,6 +73,16 @@ function Shop() {
         : url.searchParams.delete("categories");
     }
 
+    navigate(url.pathname + url.search);
+  };
+  const onChangeSortOrder: React.ChangeEventHandler<HTMLSelectElement> = (
+    event
+  ) => {
+    if (event.target.value) {
+      url.searchParams.set("orderBy", event.target.value);
+    } else {
+      url.searchParams.delete("orderBy");
+    }
     navigate(url.pathname + url.search);
   };
 
@@ -138,16 +144,21 @@ function Shop() {
               className={classes["input-number"]}
               onChange={onChangeProductsPerPage}
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+              <option value="8">8</option>
               <option value="16">16</option>
+              <option value="24">24</option>
+              <option value="32">32</option>
             </select>
             <p className={classes["short-by"]}>Short by</p>
-            <select name="string" id="string" className={classes["sort-order"]}>
+            <select
+              name="string"
+              id="string"
+              className={classes["sort-order"]}
+              onChange={onChangeSortOrder}
+            >
               <option value="">Default</option>
-              <option value="ascending">Ascending</option>
-              <option value="descending">Descending</option>
+              <option value="1">Ascending</option>
+              <option value="2">Descending</option>
             </select>
           </div>
         </div>
