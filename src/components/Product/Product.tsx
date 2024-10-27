@@ -27,12 +27,32 @@ function Product(props: { product: ProductEntity }) {
               {props.product.description}
             </p>
             <div className={classes["prices-container"]}>
-              <p className={classes["discount-price"]}>
-                Rp {props.product.price}
-              </p>
-              <p className={classes["old-price"]}>
-                Rp {props.product.discount_price}
-              </p>
+              {props.product.discount_price ? (
+                <>
+                  <p className={classes["discount-price"]}>
+                    {Number(props.product.discount_price).toLocaleString(
+                      "pt-BR",
+                      {
+                        style: "currency",
+                        currency: "BRL",
+                      }
+                    )}
+                  </p>
+                  <p className={classes["old-price"]}>
+                    {Number(props.product.price).toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </p>
+                </>
+              ) : (
+                <p className={classes["discount-price"]}>
+                  {Number(props.product.price).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </p>
+              )}
             </div>
           </div>
           <div className={classes["product-hover"]}></div>
