@@ -1,40 +1,84 @@
-import Product from "../../components/Product/Product";
-import Benefits from "../../components/Benefits/Benefits";
-import classes from "./Shop.module.css";
-import seta from "../../assets/seta.png";
+import axios from "axios";
+import {
+  Link,
+  LoaderFunctionArgs,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
+import caixinha from "../../assets/caixinha.png";
 import filterIcon from "../../assets/filterIcon.png";
 import fourballsicon from "../../assets/fourballsicon.png";
-import caixinha from "../../assets/caixinha.png";
+import seta from "../../assets/seta.png";
+import Benefits from "../../components/Benefits/Benefits";
+import Product from "../../components/Product/Product";
 import { ProductEntity } from "../../components/Products/Products";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import classes from "./Shop.module.css";
+import Pagination from "../../components/Pagination/Pagination";
+import { useState } from "react";
+import { CategoryEntity } from "../Home/Home";
+
+export async function shopLoader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url);
+  const productsRequest = await axios<{
+    meta: { total: number };
+    items: ProductEntity[];
+  }>("/api/products", {
+    params: {
+      limit: url.searchParams.get("limit"),
+      offset: url.searchParams.get("offset"),
+      categories: url.searchParams.get("categories"),
+    },
+  });
+  const categoriesRequest = await axios<CategoryEntity[]>("/api/categories");
+
+  return {
+    products: productsRequest.data,
+    categories: categoriesRequest.data,
+  };
+}
 
 function Shop() {
-  const [products, setProducts] = useState<ProductEntity[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
+  const { products, categories } = useLoaderData() as Awaited<
+    ReturnType<typeof shopLoader>
+  >;
+  const url = new URL(window.location.href);
+  const [isShowingFilters, setIsShowingFilters] = useState(true); //
+  const productsPerPage = Number(url.searchParams.get("limit") ?? 16);
+  const currentPage =
+    Number(url.searchParams.get("offset") ?? 0) / productsPerPage + 1;
+  const showingLow = (currentPage - 1) * productsPerPage + 1;
+  const showingHigh = showingLow + products.items.length - 1;
+  const showingTotal = products.meta.total;
 
-  useEffect(() => {
-    fetch("/api/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data: { items: ProductEntity[] }) => {
-        console.log("Products fetched:", data);
-        setProducts(data.items);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-        setLoading(false);
-      });
-  }, []);
+  const onChangeProductsPerPage: React.ChangeEventHandler<HTMLSelectElement> = (
+    event
+  ) => {
+    url.searchParams.set("limit", event.target.value);
+    navigate(url.pathname + url.search);
+  };
 
-  if (loading) {
-    return <p>Loading products...</p>;
-  }
+  const currentFilters = (url.searchParams.get("categories") ?? "").split(",");
+  const onChangeFilterCategory: React.ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    if (event.target.checked) {
+      url.searchParams.set(
+        "categories",
+        [...currentFilters, event.target.value].filter(Boolean).join(",")
+      );
+    } else {
+      const newFilter = currentFilters
+        .filter((c) => c !== event.target.value)
+        .join(",");
+
+      newFilter
+        ? url.searchParams.set("categories", newFilter)
+        : url.searchParams.delete("categories");
+    }
+
+    navigate(url.pathname + url.search);
+  };
 
   return (
     <>
@@ -51,28 +95,54 @@ function Shop() {
 
       <div className={classes["container-filter"]}>
         <div className={classes["filters-page"]}>
-          <div className={classes["filter-icons"]}>
-            <img src={filterIcon} />
-            <p className={classes["filter-p"]}>Filter</p>
-            <img src={fourballsicon} className={classes["fourballsicon"]} />
-            <img src={caixinha} className={classes["caixinha"]} />
-            <div className={classes["showing"]}>
-              <p className={classes["showing-results"]}>
-                Showing 1-16 of 32 results
-              </p>
+          <div>
+            <div className={classes["filter-icons"]}>
+              <div
+                onClick={() =>
+                  setIsShowingFilters((currentValue) => !currentValue)
+                }
+              >
+                <img src={filterIcon} />
+                <p className={classes["filter-p"]}>Filter</p>
+              </div>
+              <img src={fourballsicon} className={classes["fourballsicon"]} />
+              <img src={caixinha} className={classes["caixinha"]} />
+              <div className={classes["showing"]}>
+                <p className={classes["showing-results"]}>
+                  Showing {showingLow}-{showingHigh} of {showingTotal} results
+                </p>
+              </div>
             </div>
+            {isShowingFilters && (
+              <div>
+                {categories.map((category) => (
+                  <label key={category.id}>
+                    <input
+                      type="checkbox"
+                      onChange={onChangeFilterCategory}
+                      value={category.id}
+                      checked={currentFilters.includes(category.id.toString())}
+                    />
+                    {category.name}
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={classes["range-results"]}>
             <p className={classes["show-number"]}>Show</p>
-            <input
-              type="number"
+            <select
               id="pageInput"
-              placeholder="16"
-              min="1"
-              max="100"
+              defaultValue={productsPerPage}
               className={classes["input-number"]}
-            />
+              onChange={onChangeProductsPerPage}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="16">16</option>
+            </select>
             <p className={classes["short-by"]}>Short by</p>
             <select name="string" id="string" className={classes["sort-order"]}>
               <option value="">Default</option>
@@ -84,24 +154,16 @@ function Shop() {
       </div>
 
       <div className={classes["cards"]}>
-        {products.slice(0, 8).map((product) => (
+        {products.items.map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </div>
-      <div className={classes["pages"]}>
-        <a href="#" className={classes["number-page1"]}>
-          <div className={classes["page1"]}>1</div>
-        </a>
-        <a href="#" className={classes["number-page"]}>
-          <div className={classes["page"]}>2</div>
-        </a>
-        <a href="#" className={classes["number-page"]}>
-          <div className={classes["page"]}>3</div>
-        </a>
-        <a href="#" className={classes["next"]}>
-          <div className={classes["next-page"]}>Next</div>
-        </a>
-      </div>
+
+      <Pagination
+        currentPage={currentPage}
+        pageSize={productsPerPage}
+        total={products.meta.total}
+      />
       <Benefits />
     </>
   );

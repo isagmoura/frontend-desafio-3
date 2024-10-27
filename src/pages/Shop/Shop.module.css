@@ -171,64 +171,6 @@
   border-radius: 0 !important;
 }
 
-.pages {
-  display: flex;
-  justify-content: center;
-  gap: 38px;
-  padding-bottom: 85px;
-}
-
-.page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  background-color: #f9f1e7;
-}
-
-.page1 {
-  background-color: #b88e2f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-}
-
-.number-page1 {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.number-page {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  text-decoration: none;
-  color: #000000;
-}
-
-.next-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 98px;
-  height: 60px;
-  border-radius: 10px;
-  background-color: #f9f1e7;
-}
-
-.next {
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 30px;
-  text-decoration: none;
-  color: #000000;
-}
-
 @media screen and (min-width: 1920px) {
   .cards {
     justify-content: center;
