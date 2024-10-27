@@ -16,9 +16,9 @@
 }
 
 .show-more-link {
-  text-decoration: none;
+  all: unset;
+  cursor: pointer;
   color: rgba(184, 142, 47, 1);
-  padding-top: 12px;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
