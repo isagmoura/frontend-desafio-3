@@ -1,9 +1,5 @@
 import classes from "./Details.module.css";
 import seta from "../../assets/seta.png";
-import outdoorSofaMini from "../../assets/outdoorSofaMini.png";
-import outdoorSofaMini2 from "../../assets/outdoorSofaMini2.png";
-import outdoorSofaMini3 from "../../assets/outdoorSofaMini3.png";
-import outdoorSofaMini4 from "../../assets/outdoorSofaMini4.png";
 import stars from "../../assets/stars.png";
 import colorPurple from "../../assets/colorPurple.png";
 import colorBlack from "../../assets/colorBlack.png";
@@ -15,7 +11,14 @@ import Product from "../../components/Product/Product";
 import Button from "../../components/Button/Button";
 import { ProductEntity } from "../../components/Products/Products";
 import { useEffect, useState } from "react";
-import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import {
+  Link,
+  LoaderFunctionArgs,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import { CategoryEntity } from "../Home/Home";
 
 export function detailsLoader({ params }: LoaderFunctionArgs) {
   return fetch(`/api/products/${params.id}`).then((response) => {
@@ -23,7 +26,9 @@ export function detailsLoader({ params }: LoaderFunctionArgs) {
       throw new Error("Network response was not ok");
     }
 
-    return response.json() as Promise<ProductEntity>;
+    return response.json() as Promise<
+      ProductEntity & { category: CategoryEntity }
+    >;
   });
 }
 
@@ -32,9 +37,17 @@ function Details() {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSize, setSelectedSize] = useState<string>("L");
   const product = useLoaderData() as Awaited<ReturnType<typeof detailsLoader>>;
+  const [isShowingMore, setIsShowingMore] = useState(false);
+  const navigate = useNavigate();
+  const miniPhotoLinks = [
+    product.image_link,
+    ...(product.other_images_link?.split(";") ?? []),
+  ];
+  const [selectedMiniPhoto, setSelectedMiniPhoto] = useState(0);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    fetch("/api/products")
+    fetch(`/api/products?categories=${product.category.id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -42,7 +55,6 @@ function Details() {
         return response.json();
       })
       .then((data: { items: ProductEntity[] }) => {
-        console.log("Products fetched:", data);
         setProducts(data.items);
         setLoading(false);
       })
@@ -52,8 +64,20 @@ function Details() {
       });
   }, []);
 
+  useEffect(() => {
+    setSelectedMiniPhoto(0);
+  }, [pathname]);
+
   const handleSizeClick = (size: string) => {
     setSelectedSize(size);
+  };
+  const handleShowMoreClick = () => {
+    if (!isShowingMore && products.length > 4) {
+      setIsShowingMore(true);
+      return;
+    }
+
+    navigate(`/shop?categories=${product.category.id}`);
   };
 
   if (loading) {
@@ -79,39 +103,34 @@ function Details() {
       </div>
       <div className={classes["details-product-container"]}>
         <div className={classes["mini-photos"]}>
-          <a href="#">
-            <div className={classes["mini-photos-container"]}>
-              <img src={outdoorSofaMini} className={classes["mini-img"]} />
+          {miniPhotoLinks.map((link, i) => (
+            <div
+              className={classes["mini-photos-container"]}
+              onClick={() => setSelectedMiniPhoto(i)}
+            >
+              <img src={link} className={classes["mini-img"]} />
             </div>
-          </a>
-          <a href="#">
-            <div className={classes["mini-photos-container"]}>
-              <img src={outdoorSofaMini2} className={classes["mini-img"]} />
-            </div>
-          </a>
-          <a href="#">
-            <div className={classes["mini-photos-container"]}>
-              <img src={outdoorSofaMini3} className={classes["mini-img"]} />
-            </div>
-          </a>
-          <a href="#">
-            <div className={classes["mini-photos-container"]}>
-              <img src={outdoorSofaMini4} className={classes["mini-img"]} />
-            </div>
-          </a>
+          ))}
         </div>
         <div className={classes["big-photo-container"]}>
-          <a href="#">
-            <div className={classes["big-photo-sofa"]}>
-              <img src={product.image_link!} className={classes["big-couch"]} />
-            </div>
-          </a>
+          <img
+            src={miniPhotoLinks[selectedMiniPhoto] ?? product.image_link}
+            className={classes["big-couch"]}
+          />
         </div>
 
         <div className={classes["details-product"]}>
           <div>
             <h2 className={classes["title-product"]}>{product.name}</h2>
-            <p className={classes["cost-product"]}>Rp. {product.price}</p>
+            <p className={classes["cost-product"]}>
+              {Number(product.discount_price || product.price).toLocaleString(
+                "pt-BR",
+                {
+                  style: "currency",
+                  currency: "BRL",
+                }
+              )}
+            </p>
             <div className={classes["product-evaluation"]}>
               <img src={stars} className={classes["stars"]} />
               <div className={classes["review"]}>
@@ -130,11 +149,11 @@ function Details() {
                   onClick={() => handleSizeClick("L")}
                 >
                   <div
-                    className={`${classes["size1"]} ${
+                    className={`${classes["size"]} ${
                       selectedSize === "L" ? classes.selectedSize : ""
                     }`}
                   >
-                    <p className={classes["letter-size1"]}>L</p>
+                    <p>L</p>
                   </div>
                 </a>
 
@@ -144,11 +163,11 @@ function Details() {
                   onClick={() => handleSizeClick("XL")}
                 >
                   <div
-                    className={`${classes["size2"]} ${
+                    className={`${classes["size"]} ${
                       selectedSize === "XL" ? classes.selectedSize : ""
                     }`}
                   >
-                    <p className={classes["letter-size2"]}>XL</p>
+                    <p>XL</p>
                   </div>
                 </a>
                 <a
@@ -157,11 +176,11 @@ function Details() {
                   onClick={() => handleSizeClick("XS")}
                 >
                   <div
-                    className={`${classes["size3"]} ${
+                    className={`${classes["size"]} ${
                       selectedSize === "XS" ? classes.selectedSize : ""
                     }`}
                   >
-                    <p className={classes["letter-size3"]}>XS</p>
+                    <p>XS</p>
                   </div>
                 </a>
               </div>
@@ -224,12 +243,14 @@ function Details() {
               <div className={classes["id"]}>
                 <p className={classes["categories-p1"]}>SKU</p>
                 <p className={classes["two-dots"]}>:</p>
-                <p className={classes["categories-p-second"]}>SS001</p>
+                <p className={classes["categories-p-second"]}>{product.sku}</p>
               </div>
               <div className={classes["id"]}>
                 <p className={classes["categories-p2"]}>Category</p>
                 <p className={classes["two-dots"]}>:</p>
-                <p className={classes["categories-p-second"]}>Sofas</p>
+                <p className={classes["categories-p-second"]}>
+                  {product.category.name}
+                </p>
               </div>
               <div className={classes["id"]}>
                 <p className={classes["categories-p3"]}>Tags</p>
@@ -299,11 +320,15 @@ function Details() {
       <div className={classes["related-products-container"]}>
         <h2 className={classes["title-related-products"]}>Related Products</h2>
         <div className={classes["cards"]}>
-          {products.slice(0, 4).map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
+          {products
+
+            .filter((p) => p.id !== product.id)
+            .slice(0, isShowingMore ? 8 : 4)
+            .map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
         </div>
-        <Button />
+        <Button onClick={handleShowMoreClick} />
       </div>
     </>
   );
