@@ -16,10 +16,10 @@ function Product(props: { product: ProductEntity }) {
       <div className={classes["cards-products"]}>
         <div className={classes["products"]}>
           <img src={props.product.image_link} />
-          {props.product.is_new ? (
-            <Badge type="new" />
-          ) : props.product.discount_percent ? (
+          {props.product.discount_percent ? (
             <Badge type="discount" discount={props.product.discount_percent} />
+          ) : props.product.is_new ? (
+            <Badge type="new" />
           ) : null}
           <div className={classes["information-products"]}>
             <p className={classes["title-product"]}> {props.product.name}</p>
@@ -27,12 +27,32 @@ function Product(props: { product: ProductEntity }) {
               {props.product.description}
             </p>
             <div className={classes["prices-container"]}>
-              <p className={classes["discount-price"]}>
-                Rp {props.product.price}
-              </p>
-              <p className={classes["old-price"]}>
-                Rp {props.product.discount_price}
-              </p>
+              {props.product.discount_price ? (
+                <>
+                  <p className={classes["discount-price"]}>
+                    {Number(props.product.discount_price).toLocaleString(
+                      "pt-BR",
+                      {
+                        style: "currency",
+                        currency: "BRL",
+                      }
+                    )}
+                  </p>
+                  <p className={classes["old-price"]}>
+                    {Number(props.product.price).toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </p>
+                </>
+              ) : (
+                <p className={classes["discount-price"]}>
+                  {Number(props.product.price).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </p>
+              )}
             </div>
           </div>
           <div className={classes["product-hover"]}></div>

@@ -10,7 +10,7 @@ export interface ProductEntity {
   name: string;
   description: string;
   large_description: string;
-  image_link: string | null;
+  image_link: string;
   other_images_link: string | null;
   discount_price: string | null;
   discount_percent: number | null;
@@ -18,6 +18,7 @@ export interface ProductEntity {
   updated_dated: string | null;
   price: string;
   is_new: boolean | null;
+  sku: string;
 }
 
 function Products() {
