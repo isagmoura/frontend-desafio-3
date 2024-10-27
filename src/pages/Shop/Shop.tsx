@@ -106,6 +106,7 @@ function Shop() {
           <div>
             <div className={classes["filter-icons"]}>
               <div
+                className={classes["filter-categories"]}
                 onClick={() =>
                   setIsShowingFilters((currentValue) => !currentValue)
                 }
@@ -122,7 +123,7 @@ function Shop() {
               </div>
             </div>
             {isShowingFilters && (
-              <div>
+              <div className={classes["filter-checkbox"]}>
                 {categories.map((category) => (
                   <label key={category.id}>
                     <input

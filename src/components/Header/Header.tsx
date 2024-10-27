@@ -20,36 +20,24 @@ function Header() {
           <li>
             <Link to="/shop">Shop</Link>
           </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
+          <li>About</li>
+          <li>Contact</li>
         </ul>
       </nav>
 
       <div className={classes["icons-header"]}>
         <ul className={classes["icons-header-list"]}>
           <li>
-            <a href="#">
-              <img src={profileUser} />
-            </a>
+            <img src={profileUser} />
           </li>
           <li>
-            <a href="#">
-              <img src={search} />
-            </a>
+            <img src={search} />
           </li>
           <li>
-            <a href="#">
-              <img src={heartLike} />
-            </a>
+            <img src={heartLike} />
           </li>
           <li>
-            <a href="#">
-              <img src={shoppingCart} />
-            </a>
+            <img src={shoppingCart} />
           </li>
         </ul>
       </div>
