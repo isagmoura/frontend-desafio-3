@@ -140,104 +140,79 @@ function Details() {
             <p className={classes["large-description"]}>
               {product.large_description}
             </p>
+
             <div className={classes["sizes"]}>
               <p className={classes["size-title"]}>Size</p>
               <div className={classes["three-sizes"]}>
-                <a
-                  href="#"
-                  className={classes["size-link"]}
+                <div
                   onClick={() => handleSizeClick("L")}
+                  className={`${classes["size"]} ${
+                    selectedSize === "L" ? classes.selectedSize : ""
+                  }`}
                 >
-                  <div
-                    className={`${classes["size"]} ${
-                      selectedSize === "L" ? classes.selectedSize : ""
-                    }`}
-                  >
-                    <p>L</p>
-                  </div>
-                </a>
+                  <p>L</p>
+                </div>
 
-                <a
-                  href="#"
-                  className={classes["size-link"]}
+                <div
                   onClick={() => handleSizeClick("XL")}
+                  className={`${classes["size"]} ${
+                    selectedSize === "XL" ? classes.selectedSize : ""
+                  }`}
                 >
-                  <div
-                    className={`${classes["size"]} ${
-                      selectedSize === "XL" ? classes.selectedSize : ""
-                    }`}
-                  >
-                    <p>XL</p>
-                  </div>
-                </a>
-                <a
-                  href="#"
-                  className={classes["size-link"]}
+                  <p>XL</p>
+                </div>
+
+                <div
                   onClick={() => handleSizeClick("XS")}
+                  className={`${classes["size"]} ${
+                    selectedSize === "XS" ? classes.selectedSize : ""
+                  }`}
                 >
-                  <div
-                    className={`${classes["size"]} ${
-                      selectedSize === "XS" ? classes.selectedSize : ""
-                    }`}
-                  >
-                    <p>XS</p>
-                  </div>
-                </a>
+                  <p>XS</p>
+                </div>
               </div>
             </div>
             <div className={classes["colours"]}>
               <p className={classes["color-title"]}>Color</p>
               <div className={classes["color-container"]}>
-                <div>
-                  <a href="#">
-                    <img src={colorPurple} />
-                  </a>
+                <div className={classes["color-choice"]}>
+                  <img src={colorPurple} />
                 </div>
-                <div>
-                  <a href="#">
-                    <img src={colorBlack} />
-                  </a>
+                <div className={classes["color-choice"]}>
+                  <img src={colorBlack} />
                 </div>
-                <div>
-                  <a href="#">
-                    <img src={colorBeige} />
-                  </a>
+                <div className={classes["color-choice"]}>
+                  <img src={colorBeige} />
                 </div>
               </div>
             </div>
             <div className={classes["actions-buy"]}>
               <div className={classes["add-one"]}>
-                <a href="#" className={classes["add"]}>
-                  <div>
-                    <p className={classes["minus"]}>-</p>
-                  </div>
-                </a>
-                <a href="#" className={classes["add"]}>
-                  <div>
-                    <p className={classes["quantity"]}>1</p>
-                  </div>
-                </a>
-                <a href="#" className={classes["add"]}>
-                  <div>
-                    <p className={classes["plus"]}>+</p>
-                  </div>
-                </a>
+                <div>
+                  <p className={classes["minus"]}>-</p>
+                </div>
+
+                <div>
+                  <p className={classes["quantity"]}>1</p>
+                </div>
+
+                <div>
+                  <p className={classes["plus"]}>+</p>
+                </div>
               </div>
-              <a href="#" className={classes["link-cart"]}>
-                <div className={classes["add-cart"]}>
-                  <p className={classes["add-to-cart"]}>Add To Cart</p>
+
+              <div className={classes["add-cart"]}>
+                <p className={classes["add-to-cart"]}>Add To Cart</p>
+              </div>
+
+              <div className={classes["compare"]}>
+                <div>
+                  <p className={classes["plus-p"]}>+</p>
                 </div>
-              </a>
-              <a href="#" className={classes["link-compare"]}>
-                <div className={classes["compare"]}>
-                  <div>
-                    <p className={classes["plus-p"]}>+</p>
-                  </div>
-                  <div>
-                    <p className={classes["compare-p"]}>Compare</p>
-                  </div>
+                <div>
+                  <p className={classes["compare-p"]}>Compare</p>
                 </div>
-              </a>
+              </div>
             </div>
             <div className={classes["categories"]}>
               <div className={classes["id"]}>
@@ -263,21 +238,17 @@ function Details() {
                 <p className={classes["categories-p4"]}>Share</p>
                 <p className={classes["two-dots"]}>:</p>
                 <div className={classes["id-social-media"]}>
-                  <a href="#">
-                    <div className={classes["social-media"]}>
-                      <img src={facebook} />
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div className={classes["social-media"]}>
-                      <img src={linkedin} />
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div className={classes["social-media"]}>
-                      <img src={twitter} />
-                    </div>
-                  </a>
+                  <div className={classes["social-media"]}>
+                    <img src={facebook} />
+                  </div>
+
+                  <div className={classes["social-media"]}>
+                    <img src={linkedin} />
+                  </div>
+
+                  <div className={classes["social-media"]}>
+                    <img src={twitter} />
+                  </div>
                 </div>
               </div>
             </div>

@@ -35,27 +35,17 @@ function Footer() {
               <li>
                 <Link to="/shop">Shop</Link>
               </li>
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
-              </li>
+              <li className={classes["footer-li"]}>About</li>
+              <li className={classes["footer-li"]}>Contact</li>
             </ul>
           </div>
 
           <div className={classes["itens"]}>
             <ul className={classes["footer-links"]}>
               <li className={classes["highlights"]}>Help</li>
-              <li>
-                <a href="#">Payment Options</a>
-              </li>
-              <li>
-                <a href="#">Returns</a>
-              </li>
-              <li>
-                <a href="#">Privacy Policies</a>
-              </li>
+              <li className={classes["footer-li"]}>Payment Options</li>
+              <li className={classes["footer-li"]}>Returns</li>
+              <li className={classes["footer-li"]}>Privacy Policies</li>
             </ul>
           </div>
 
