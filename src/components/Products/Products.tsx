@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import classes from "./Products.module.css";
 import Button from "../Button/Button";
+import axios from "axios";
 
 export interface ProductEntity {
   id: number;
@@ -10,9 +11,8 @@ export interface ProductEntity {
   large_description: string;
   image_link: string | null;
   other_images_link: string | null;
-  discount: string;
   discount_price: string | null;
-  discount_percent: string | null;
+  discount_percent: number | null;
   created_date: string | null;
   updated_dated: string | null;
   price: string;
@@ -25,16 +25,10 @@ function Products() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch("/api/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data: ProductEntity[]) => {
-        console.log("Products fetched:", data);
-        setProducts(data);
+    axios<{ items: ProductEntity[] }>("/api/products", { params: { limit: 8 } })
+      .then((res) => {
+        console.log("Products fetched:", res);
+        setProducts(res.data.items);
         setLoading(false);
       })
       .catch((error) => {
