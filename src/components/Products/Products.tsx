@@ -18,6 +18,7 @@ export interface ProductEntity {
   updated_dated: string | null;
   price: string;
   is_new: boolean | null;
+  sku: string;
 }
 
 function Products() {

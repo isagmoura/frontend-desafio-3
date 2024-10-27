@@ -5,11 +5,11 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 
 function App({ children }: React.PropsWithChildren) {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, search]);
 
   return (
     <>

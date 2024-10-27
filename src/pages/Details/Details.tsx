@@ -15,6 +15,7 @@ import {
   Link,
   LoaderFunctionArgs,
   useLoaderData,
+  useLocation,
   useNavigate,
 } from "react-router-dom";
 import { CategoryEntity } from "../Home/Home";
@@ -43,6 +44,7 @@ function Details() {
     ...(product.other_images_link?.split(";") ?? []),
   ];
   const [selectedMiniPhoto, setSelectedMiniPhoto] = useState(0);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     fetch(`/api/products?categories=${product.category.id}`)
@@ -61,6 +63,10 @@ function Details() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    setSelectedMiniPhoto(0);
+  }, [pathname]);
 
   const handleSizeClick = (size: string) => {
     setSelectedSize(size);
@@ -237,12 +243,14 @@ function Details() {
               <div className={classes["id"]}>
                 <p className={classes["categories-p1"]}>SKU</p>
                 <p className={classes["two-dots"]}>:</p>
-                <p className={classes["categories-p-second"]}>SS001</p>
+                <p className={classes["categories-p-second"]}>{product.sku}</p>
               </div>
               <div className={classes["id"]}>
                 <p className={classes["categories-p2"]}>Category</p>
                 <p className={classes["two-dots"]}>:</p>
-                <p className={classes["categories-p-second"]}>Sofas</p>
+                <p className={classes["categories-p-second"]}>
+                  {product.category.name}
+                </p>
               </div>
               <div className={classes["id"]}>
                 <p className={classes["categories-p3"]}>Tags</p>

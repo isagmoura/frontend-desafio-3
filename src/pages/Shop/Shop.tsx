@@ -46,11 +46,13 @@ function Shop() {
   const showingLow = (currentPage - 1) * productsPerPage + 1;
   const showingHigh = showingLow + products.items.length - 1;
   const showingTotal = products.meta.total;
+  const sorting = url.searchParams.get("orderBy") ?? "";
 
   const onChangeProductsPerPage: React.ChangeEventHandler<HTMLSelectElement> = (
     event
   ) => {
     url.searchParams.set("limit", event.target.value);
+    url.searchParams.delete("offset");
     navigate(url.pathname + url.search);
   };
 
@@ -154,6 +156,7 @@ function Shop() {
               name="string"
               id="string"
               className={classes["sort-order"]}
+              defaultValue={sorting}
               onChange={onChangeSortOrder}
             >
               <option value="">Default</option>

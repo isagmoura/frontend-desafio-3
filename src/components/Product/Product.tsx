@@ -16,10 +16,10 @@ function Product(props: { product: ProductEntity }) {
       <div className={classes["cards-products"]}>
         <div className={classes["products"]}>
           <img src={props.product.image_link} />
-          {props.product.is_new ? (
-            <Badge type="new" />
-          ) : props.product.discount_percent ? (
+          {props.product.discount_percent ? (
             <Badge type="discount" discount={props.product.discount_percent} />
+          ) : props.product.is_new ? (
+            <Badge type="new" />
           ) : null}
           <div className={classes["information-products"]}>
             <p className={classes["title-product"]}> {props.product.name}</p>
