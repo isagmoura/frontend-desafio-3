@@ -15,7 +15,13 @@ import Product from "../../components/Product/Product";
 import Button from "../../components/Button/Button";
 import { ProductEntity } from "../../components/Products/Products";
 import { useEffect, useState } from "react";
-import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import {
+  Link,
+  LoaderFunctionArgs,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
+import { CategoryEntity } from "../Home/Home";
 
 export function detailsLoader({ params }: LoaderFunctionArgs) {
   return fetch(`/api/products/${params.id}`).then((response) => {
@@ -23,7 +29,9 @@ export function detailsLoader({ params }: LoaderFunctionArgs) {
       throw new Error("Network response was not ok");
     }
 
-    return response.json() as Promise<ProductEntity>;
+    return response.json() as Promise<
+      ProductEntity & { category: CategoryEntity }
+    >;
   });
 }
 
@@ -32,9 +40,11 @@ function Details() {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedSize, setSelectedSize] = useState<string>("L");
   const product = useLoaderData() as Awaited<ReturnType<typeof detailsLoader>>;
+  const [isShowingMore, setIsShowingMore] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("/api/products")
+    fetch(`/api/products?categories=${product.category.id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -42,7 +52,6 @@ function Details() {
         return response.json();
       })
       .then((data: { items: ProductEntity[] }) => {
-        console.log("Products fetched:", data);
         setProducts(data.items);
         setLoading(false);
       })
@@ -54,6 +63,14 @@ function Details() {
 
   const handleSizeClick = (size: string) => {
     setSelectedSize(size);
+  };
+  const handleShowMoreClick = () => {
+    if (!isShowingMore && products.length > 4) {
+      setIsShowingMore(true);
+      return;
+    }
+
+    navigate(`/shop?categories=${product.category.id}`);
   };
 
   if (loading) {
@@ -299,11 +316,15 @@ function Details() {
       <div className={classes["related-products-container"]}>
         <h2 className={classes["title-related-products"]}>Related Products</h2>
         <div className={classes["cards"]}>
-          {products.slice(0, 4).map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
+          {products
+
+            .filter((p) => p.id !== product.id)
+            .slice(0, isShowingMore ? 8 : 4)
+            .map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
         </div>
-        <Button />
+        <Button onClick={handleShowMoreClick} />
       </div>
     </>
   );
