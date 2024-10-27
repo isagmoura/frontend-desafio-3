@@ -15,7 +15,7 @@ import Product from "../../components/Product/Product";
 import Button from "../../components/Button/Button";
 import { ProductEntity } from "../../components/Products/Products";
 import { useEffect, useState } from "react";
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 
 export function detailsLoader({ params }: LoaderFunctionArgs) {
   return fetch(`/api/products/${params.id}`).then((response) => {
@@ -41,9 +41,9 @@ function Details() {
         }
         return response.json();
       })
-      .then((data: ProductEntity[]) => {
+      .then((data: { items: ProductEntity[] }) => {
         console.log("Products fetched:", data);
-        setProducts(data);
+        setProducts(data.items);
         setLoading(false);
       })
       .catch((error) => {
@@ -64,13 +64,13 @@ function Details() {
     <>
       <div className={classes["previous-pages"]}>
         <div>
-          <a href="#" className={classes["link-home"]}>
+          <Link to={"/"} className={classes["link-home"]}>
             Home
-          </a>
+          </Link>
           <img src={seta} />
-          <a href="#" className={classes["link-shop"]}>
+          <Link to={"/shop"} className={classes["link-shop"]}>
             Shop
-          </a>
+          </Link>
           <img src={seta} className={classes["seta"]} />
         </div>
         <div className={classes["current-page"]}>
@@ -299,7 +299,7 @@ function Details() {
       <div className={classes["related-products-container"]}>
         <h2 className={classes["title-related-products"]}>Related Products</h2>
         <div className={classes["cards"]}>
-          {products.map((product) => (
+          {products.slice(0, 4).map((product) => (
             <Product key={product.id} product={product} />
           ))}
         </div>

@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import Details, { detailsLoader } from "./pages/Details/Details.tsx";
 import Home from "./pages/Home/Home.tsx";
-import Shop from "./pages/Shop/Shop.tsx";
+import Shop, { shopLoader } from "./pages/Shop/Shop.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +22,7 @@ const router = createBrowserRouter([
         <Shop />
       </App>
     ),
+    loader: shopLoader,
   },
   {
     path: "/details/:id",

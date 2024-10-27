@@ -4,19 +4,14 @@ import Categories from "../../components/Categories/Categories";
 import Hero from "../../components/Hero/Hero";
 import Products from "../../components/Products/Products";
 
-// Definindo a interface para as categorias
-interface Category {
+export interface CategoryEntity {
   id: number;
   name: string;
   image_link: string;
 }
 
-// fetch("/api/categories")
-//   .then((res) => res.json())
-
 function Home() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [categories, setCategories] = useState<CategoryEntity[]>([]);
 
   useEffect(() => {
     fetch("/api/categories")
@@ -27,14 +22,12 @@ function Home() {
 
         return response.json();
       })
-      .then((data: Category[]) => {
+      .then((data: CategoryEntity[]) => {
         console.log("Categories fetched:", data);
         setCategories(data);
-        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
-        setLoading(false);
       });
   }, []);
 
